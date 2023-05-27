@@ -1,0 +1,46 @@
+@startuml
+
+class Queue
+{
+
+}
+
+class Manager
+{
+    + Queue list
+    + decision (frame) :void
+    + readFromDB(string query, &DefinedData dd) :void
+    + readToDB (string query, &DefiniedData dd) :void
+}
+
+class DataParser
+{
+    parseToDefinedData (Frame) : DefinedData
+    parseToFrame (DefinedData) : Frame
+}
+
+class DefinedData
+{
+    + string name
+    + int number
+}
+
+class Frame
+{
+
+}
+
+class Listener
+{
+    listen (port):void
+    putToQueue (frame) :void
+}
+
+Manager --|> Listener
+Manager --|> DataParser
+
+Listener --|> Queue
+DataParser --|> Frame
+DataParser --|> DefinedData
+
+@enduml
